@@ -4,16 +4,26 @@ import { Card, Col, Row, Radio, Button } from 'antd';
 import { useEffect, useState } from 'react';
 import { getQuestion } from '../../apis/data-api';
 import { useGlobalContext } from '../../context/globalContext';
+import { useNavigate } from 'react-router-dom';
 
 export const QuizzComponent = () => {
     const [listQuestion, setListQuestion] = useState([]);
     const { numberQuestion } = useGlobalContext();
-    const [index,setIndex] =useState(0);
+    const [index, setIndex] = useState(0);
+    const navigator = useNavigate()
 
     useEffect(() => {
-        getQuestion(numberQuestion).then(data => setListQuestion(data.results))
+        getQuestion(numberQuestion).then(data => setListQuestion(data))
     })
-
+    const handlePre = () => {
+        setIndex(index - 1);
+    }
+    const handleNext = () => {
+        setIndex(index + 1);
+    }
+    const handleSubmit = () => {
+        navigator('/result ')
+    }
     return (
         <div>
             <div className="site-card-wrapper">
@@ -21,23 +31,27 @@ export const QuizzComponent = () => {
                     <Col span={6}>
                     </Col>
                     <Col span={12}>
-                        {listQuestion.map((q,index) => (
-                            <Card title={q.question} bordered={false}>
+                        {listQuestion.results &&
+                            <Card title={listQuestion.results[index].question} bordered={false}>
                                 <Radio.Group name="radiogroup" defaultValue={1}>
-                                    <Radio value={1}>{q.answer1}</Radio>
-                                    <Radio value={2}>{q.answer2}</Radio>
-                                    <Radio value={3}>{q.answer3}</Radio>
-                                    <Radio value={4}>{q.answer4}</Radio>
+                                    <Radio value={listQuestion.results[index].answer1}>{listQuestion.results[index].answer1}</Radio>
+                                    <Radio value={listQuestion.results[index].answer2}>{listQuestion.results[index].answer2}</Radio>
+                                    <Radio value={listQuestion.results[index].answer3}>{listQuestion.results[index].answer3}</Radio>
+                                    <Radio value={listQuestion.results[index].answer4}>{listQuestion.results[index].answer4}</Radio>
                                 </Radio.Group>
                             </Card>
-                        ))}
+                        }
 
                         <Row >
                             <Col span={12}>
-                                <Button type="primary">Previous</Button>
+                                <Button className={index === 0 ? 'unable_button' : null} type="primary" onClick={handlePre}>Previous</Button>
                             </Col>
                             <Col span={12}>
-                                <Button type="primary">Next</Button>
+                                {index === numberQuestion - 1 ?
+                                    <Button type="primary" onClick={handleSubmit}>Submit</Button> 
+                                    :
+                                    <Button className={index === numberQuestion - 1 ? 'unable_button' : null} type="primary" onClick={handleNext}> Next </Button>
+                                }
                             </Col>
                         </Row>
 

@@ -9,7 +9,6 @@ export const HomeComponent = () => {
     const navigator =useNavigate();
 
     const handleInputNumber = () => {
-        console.log(numberQuestion)
         navigator('/quizQuestion') 
     }
 

@@ -11,8 +11,12 @@ export const Login = () => {
             password: values.password
         }
         const token = await loginAccount(user)
+        console.log(token);
         localStorage.setItem('token', token.tokens.access.token)
-        navigator('/home')
+        setTimeout(() => {
+            navigator('/home')
+        })
+        
     };
 
     const onFinishFailed = (errorInfo) => {

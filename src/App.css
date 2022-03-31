@@ -37,3 +37,8 @@
   font-size:35px;
   font-weight: bold;
 }
+.unable_button{
+  pointer-events: none;
+  background-color:gainsboro !important;
+  border : none !important;
+}

@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { GuardCheck } from './RouterGuard/GuardCheck';
 import { HomeComponent } from './component/UserComponent/HomeComponent';
 import { QuizzComponent } from './component/UserComponent/QuizzComponent';
+import { Results } from './component/UserComponent/Result';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route element={<GuardCheck/>}>
               <Route path="/home" element={<HomeComponent />} />
               <Route path="/quizQuestion" element={<QuizzComponent />} />
+              <Route path="/result" element={<Results />} />
             </Route>      
           </Routes>
         </BrowserRouter>
