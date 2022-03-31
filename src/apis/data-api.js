@@ -10,8 +10,8 @@ export function loginAccount(user) {
         .then((response) => response.data);
 }
 
-export function getQuestion() {
-    return axios.get(` https://fwa-ec-quiz.herokuapp.com/v1/questions/`)
+export function getQuestion(number) {
+    return axios.get(` https://fwa-ec-quiz.herokuapp.com/v1/questions/?limit=${number}`)
          .then((response) => response.data);
 }
 

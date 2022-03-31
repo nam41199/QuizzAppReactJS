@@ -1,16 +1,18 @@
 import { Form, Input, Button, Checkbox } from 'antd';
 import 'antd/dist/antd.css';
-import { loginAccount } from '../apis/data-api';
+import { useNavigate } from 'react-router-dom';
+import { loginAccount } from '../../apis/data-api';
 
 export const Login = () => {
-
-     const onFinish = async (values) => {
+    const navigator = useNavigate()
+    const onFinish = async (values) => {
         const user = {
             username: values.username,
             password: values.password
         }
-        const token =  await loginAccount(user)
+        const token = await loginAccount(user)
         localStorage.setItem('token', token.tokens.access.token)
+        navigator('/home')
     };
 
     const onFinishFailed = (errorInfo) => {

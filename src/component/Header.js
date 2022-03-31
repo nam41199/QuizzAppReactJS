@@ -13,6 +13,10 @@ export const Header = () => {
         else if (e.key === '2'){
             navigate('/register');
         }
+        else if (e.key === '3'){
+            localStorage.clear();
+            navigate('/login');
+        }
     }
 
     const menu = (
@@ -23,15 +27,15 @@ export const Header = () => {
             <Menu.Item key="2" icon={<UserOutlined />}>
                 Register
             </Menu.Item>
-            {/* <Menu.Item key="3" icon={<UserOutlined />}>
-                3rd menu item
-            </Menu.Item> */}
+            <Menu.Item key="3" icon={<UserOutlined />}>
+                Log Out
+            </Menu.Item>
         </Menu>
     );
 
     return (
         <div className="site-page-header" >
-            <p className="text_header" onClick={()=>navigate('/')}>Quizz App</p>
+            <p className="text_header" onClick={()=>navigate('/home')}>Quizz App</p>
             <div className="user_header">
                 <Space>
                     <Dropdown overlay={menu}>

@@ -5,7 +5,7 @@ import {
   Select,
   Button,
 } from 'antd';
-import { registerAccount } from '../apis/data-api';
+import { registerAccount } from '../../apis/data-api';
 
 const { Option } = Select;
 

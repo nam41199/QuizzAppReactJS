@@ -2,10 +2,10 @@ import { useContext, createContext } from "react";
 
 
 const CreateGlobalContext = createContext({
-    todosList: [],
-    setTodosList: () => {},
-    filler:'all',
-    setFiller:()=> {},
+    numberQuestion: 1,
+    setNumberQuestion: () => {},
+    // filler:'all',
+    // setFiller:()=> {},
 });
 
 const useGlobalContext = () => useContext(CreateGlobalContext);
