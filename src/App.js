@@ -11,6 +11,7 @@ import { QuizzComponent } from './component/UserComponent/QuizzComponent';
 import { Results } from './component/UserComponent/Result';
 import { AdminDashboard } from './component/AdminComponent/AdminDashboard';
 import { AddQuestion } from './component/AdminComponent/AddQuestion';
+import { EditQuestion } from './component/AdminComponent/EditQuestion';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
               <Route path="/quizQuestion" element={<QuizzComponent />} />
               <Route path="/result" element={<Results />} />
               <Route path="/addQuestion" element={<AddQuestion />} />
+              <Route path="/editQuestion/:id" element={<EditQuestion />} />
             </Route>      
           </Routes>
         </BrowserRouter>

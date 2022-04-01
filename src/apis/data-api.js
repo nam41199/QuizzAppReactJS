@@ -34,3 +34,13 @@ export function deleteQuestionById(id) {
     return axios.delete(` https://fwa-ec-quiz.herokuapp.com/v1/questions/edit/${id}`)
          .then((response) => response.data);
 }
+
+export function editQuestionById(id,question) {
+    return axios.patch(` https://fwa-ec-quiz.herokuapp.com/v1/questions/edit/${id}`,question)
+         .then((response) => response.data);
+}
+
+export function getQuestionById(id) {
+    return axios.get(` https://fwa-ec-quiz.herokuapp.com/v1/questions/edit/${id}`)
+         .then((response) => response.data);
+}

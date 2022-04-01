@@ -21,6 +21,10 @@ export const AdminDashboard = () => {
         navigator('/addQuestion')
     }
 
+    const handleEditQ = (id) =>{
+        navigator(`/editQuestion/${id}`)
+    }
+
     const handleDeleteQ = (id) =>{
         deleteQuestionById(id)
         navigator('/addQuestion')
@@ -50,7 +54,7 @@ export const AdminDashboard = () => {
                         <td>{data.answer3}</td>
                         <td>{data.answer4}</td>
                         <td>{data.correctanswer}</td>
-                        <td><Button value="small" >Edit</Button></td>
+                        <td><Button onClick={()=>handleEditQ(data.id)} value="small" >Edit</Button></td>
                         <td><Button onClick={()=>handleDeleteQ(data.id)} danger value="small">Delete</Button></td>
                     </tr>
                 ))}
