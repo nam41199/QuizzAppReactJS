@@ -2,21 +2,24 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import 'antd/dist/antd.css';
 import { useNavigate } from 'react-router-dom';
 import { loginAccount } from '../../apis/data-api';
+import { useGlobalContext } from '../../context/globalContext';
 
 export const Login = () => {
     const navigator = useNavigate()
+    const {user, setUser } = useGlobalContext()
     const onFinish = async (values) => {
-        const user = {
+        const userLogin = {
             username: values.username,
             password: values.password
         }
-        const token = await loginAccount(user)
-        console.log(token);
+        const token = await loginAccount(userLogin)
         localStorage.setItem('token', token.tokens.access.token)
+        setUser(token.user)
+        console.log(user);
         setTimeout(() => {
             navigator('/home')
         })
-        
+
     };
 
     const onFinishFailed = (errorInfo) => {

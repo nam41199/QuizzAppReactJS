@@ -9,16 +9,20 @@ import { GuardCheck } from './RouterGuard/GuardCheck';
 import { HomeComponent } from './component/UserComponent/HomeComponent';
 import { QuizzComponent } from './component/UserComponent/QuizzComponent';
 import { Results } from './component/UserComponent/Result';
+import { AdminDashboard } from './component/AdminComponent/AdminDashboard';
+import { AddQuestion } from './component/AdminComponent/AddQuestion';
 
 
 function App() {
   const [numberQuestion, setNumberQuestion] = useState(1);
-  
+  const [user, setUser] = useState({});
   return (
       <CreateGlobalContext.Provider
         value={{
           numberQuestion,
           setNumberQuestion,
+          user,
+          setUser,
         }}
       >
         <BrowserRouter>
@@ -27,9 +31,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} /> 
             <Route element={<GuardCheck/>}>
-              <Route path="/home" element={<HomeComponent />} />
+              <Route path="/home" element={ user.role === "user" ? <HomeComponent /> : <AdminDashboard />} />
               <Route path="/quizQuestion" element={<QuizzComponent />} />
               <Route path="/result" element={<Results />} />
+              <Route path="/addQuestion" element={<AddQuestion />} />
             </Route>      
           </Routes>
         </BrowserRouter>
