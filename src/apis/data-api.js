@@ -5,8 +5,13 @@ export function registerAccount(user) {
         .then((response) => response.data);
 }
 
+export function refreshToken(refreshToken) {
+    return axios.create().post(` https://fwa-ec-quiz.herokuapp.com/v1/auth/refresh-tokens`,{refreshToken:refreshToken})
+        .then((response) => response.data);
+}
+
 export function loginAccount(user) {
-    return axios.post(`  https://fwa-ec-quiz.herokuapp.com/v1/auth/login`,user)
+    return axios.create().post(`  https://fwa-ec-quiz.herokuapp.com/v1/auth/login`,user)
         .then((response) => response.data);
 }
 

@@ -32,9 +32,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} /> 
             <Route element={<GuardCheck/>}>
-              <Route path="/home" element={ user.role === "user" ? <HomeComponent /> : <AdminDashboard />} />
+              <Route path="/home" element={ user.role === "admin" ?  <AdminDashboard />: <HomeComponent />} />
               <Route path="/quizQuestion" element={<QuizzComponent />} />
-              <Route path="/result" element={<Results />} />
+              <Route path="/result/:result" element={<Results />} />
               <Route path="/addQuestion" element={<AddQuestion />} />
               <Route path="/editQuestion/:id" element={<EditQuestion />} />
             </Route>      

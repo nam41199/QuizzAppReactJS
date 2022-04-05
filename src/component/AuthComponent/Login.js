@@ -6,7 +6,7 @@ import { useGlobalContext } from '../../context/globalContext';
 
 export const Login = () => {
     const navigator = useNavigate()
-    const {user, setUser } = useGlobalContext()
+    const {  setUser } = useGlobalContext()
     const onFinish = async (values) => {
         const userLogin = {
             username: values.username,
@@ -15,11 +15,12 @@ export const Login = () => {
         const token = await loginAccount(userLogin)
         localStorage.setItem('token', token.tokens.access.token)
         setUser(token.user)
-        console.log(user);
-        setTimeout(() => {
-            navigator('/home')
-        })
-
+        localStorage.setItem("expires", token.tokens.access.expires);
+        localStorage.setItem(
+            "refreshToken",
+            token.tokens.refresh.token
+        );
+        navigator('/home')
     };
 
     const onFinishFailed = (errorInfo) => {

@@ -50,8 +50,7 @@ export const Register = () => {
       password: values.password,
       email: values.email,
     }
-    await console.log(user);
-    registerAccount(user);
+    await registerAccount(user);
   };
 
   return (
