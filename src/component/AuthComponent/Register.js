@@ -6,6 +6,7 @@ import {
   Button,
 } from 'antd';
 import { registerAccount } from '../../apis/data-api';
+import { useNavigate } from 'react-router-dom';
 
 const { Option } = Select;
 
@@ -43,7 +44,7 @@ const tailFormItemLayout = {
 
 export const Register = () => {
   const [form] = Form.useForm();
-
+const navigator = useNavigate()
   const onFinish = async (values) => {
     const user = {
       username: values.username,
@@ -51,6 +52,7 @@ export const Register = () => {
       email: values.email,
     }
     await registerAccount(user);
+    navigator('/login')
   };
 
   return (

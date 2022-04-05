@@ -9,9 +9,10 @@ export const AdminDashboard = () => {
     const navigator = useNavigate()
     const [listQuestion, setListQuestion] = useState([]);
     const [page, setPage] = useState(1);
+
     useEffect(() => {
         getQuestionAdmin(page, 10).then(data => setListQuestion(data))
-    })
+    },[page])
 
     const onChangePage = (pageNum) => {
         setPage(pageNum);
@@ -25,9 +26,10 @@ export const AdminDashboard = () => {
         navigator(`/editQuestion/${id}`)
     }
 
-    const handleDeleteQ = (id) =>{
-        deleteQuestionById(id)
-        navigator('/addQuestion')
+    const handleDeleteQ = async (id) =>{
+        await deleteQuestionById(id)
+        const data = await getQuestionAdmin(page,10)
+        setListQuestion(data)
     }
 
     return (

@@ -1,6 +1,6 @@
 import 'antd/dist/antd.css';
 import 'antd/dist/antd.css';
-import { Card, Col, Row, Radio, Button } from 'antd';
+import { Card, Col, Row, Radio, Button, Space } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 import { getQuestion, submitAnswer } from '../../apis/data-api';
 import { useGlobalContext } from '../../context/globalContext';
@@ -26,18 +26,16 @@ export const QuizzComponent = () => {
     }
 
     const handleSubmit = async () => {
-        const test = await submitAnswer(ans.current) ;
-        const result = test.reduce((acc,cur)=> cur.result? acc+1 : acc ,0)
-        
+        const test = await submitAnswer(ans.current);
+        const result = test.reduce((acc, cur) => cur.result ? acc + 1 : acc, 0)
         navigator(`/result/${result}`)
     }
 
     const onChange = (event) => {
-        ans.current[index] = { 
-            id: listQuestion.results[index].id, 
-            correctanswer: event.target.value 
+        ans.current[index] = {
+            id: listQuestion.results[index].id,
+            correctanswer: event.target.value
         }
-        console.log(ans)
     }
 
     return (
@@ -53,14 +51,16 @@ export const QuizzComponent = () => {
                                     name="radiogroup"
                                     onChange={onChange}
                                     defaultValue={
-                                        ans.current[index]?.correctanswer 
+                                        ans.current[index]?.correctanswer
                                     }
                                     key={listQuestion.results[index].id}
                                 >
-                                    <Radio value={listQuestion.results[index].answer1}>{listQuestion.results[index].answer1}</Radio>
-                                    <Radio value={listQuestion.results[index].answer2}>{listQuestion.results[index].answer2}</Radio>
-                                    <Radio value={listQuestion.results[index].answer3}>{listQuestion.results[index].answer3}</Radio>
-                                    <Radio value={listQuestion.results[index].answer4}>{listQuestion.results[index].answer4}</Radio>
+                                    <Space direction="vertical">
+                                        <Radio value={listQuestion.results[index].answer1}>{listQuestion.results[index].answer1}</Radio>
+                                        <Radio value={listQuestion.results[index].answer2}>{listQuestion.results[index].answer2}</Radio>
+                                        <Radio value={listQuestion.results[index].answer3}>{listQuestion.results[index].answer3}</Radio>
+                                        <Radio value={listQuestion.results[index].answer4}>{listQuestion.results[index].answer4}</Radio>
+                                    </Space>
                                 </Radio.Group>
                             </Card>
                         }
@@ -71,7 +71,7 @@ export const QuizzComponent = () => {
                             </Col>
                             <Col span={12}>
                                 {index === numberQuestion - 1 ?
-                                    <Button type="primary" onClick={handleSubmit}>Submit</Button>
+                                    <Button type="danger" onClick={handleSubmit}>Submit</Button>
                                     :
                                     <Button className={index === numberQuestion - 1 ? 'unable_button' : null} type="primary" onClick={handleNext}> Next </Button>
                                 }

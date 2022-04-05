@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export function registerAccount(user) {
-    return axios.post(` https://fwa-ec-quiz.herokuapp.com/v1/auth/register`,user)
+    return axios.create().post(` https://fwa-ec-quiz.herokuapp.com/v1/auth/register`,user)
         .then((response) => response.data);
 }
 
